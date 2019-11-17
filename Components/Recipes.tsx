@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Firebase, FirebaseRef } from '../Constants/fbAudit';
-//import { getSocList } from '../Actions/Products';
 import { Container, Content, Text } from 'native-base';
+import { getDocs, getDoc, getByQuery } from '../Store/Actions/firestore';
+import FilterForm from './FilterForm';
 
-class Recipes extends Component {
-  static propTypes = {
-    Layout: PropTypes.func.isRequired,
-    match: PropTypes.shape({ params: PropTypes.shape({}) }),
-    fetchRecipes: PropTypes.func.isRequired,
-    fetchMeals: PropTypes.func.isRequired,
-  }
-
+class Recipes extends Component<any> {
   static defaultProps = {
     match: null,
   }
@@ -22,31 +14,22 @@ class Recipes extends Component {
     loading: false,
   }
 
-  componentDidMount = () => this.fetchData();
+  // componentDidMount = () => {
+  //   const { fetchSocs } = this.props;
+  //   return fetchSocs();
+  // } 
 
-  fetchData = () => {
-    const { fetchSocs } = this.props;
-    
-    this.setState({ loading: true });
-    return fetchSocs()
-      .then(() => this.setState({
-        loading: false,
-        error: null,
-      })).catch(err => this.setState({
-        loading: false,
-        error: err,
-      }));
-  }
 
   render = () => {
-    const { socs } = this.props;
+    const { socs,filteredData } = this.props;
     //const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (
       <Container style={{ flex: 1 }}>
         <Content>
-          <Text>
-            {JSON.stringify(socs)}
+          <FilterForm></FilterForm>
+          <Text style={{marginTop:15}}>
+            {filteredData.length && JSON.stringify(filteredData)}
           </Text>
           <Text>hi</Text>
         </Content>
@@ -56,25 +39,16 @@ class Recipes extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     socs: state.soc || {},
+    filteredData:state.soc.filteredData || {},
   }
 };
 
-const mapDispatchToProps = {
-  fetchSocs: ()=> {
-    if (Firebase === null) return () => new Promise(resolve => resolve());
-    console.log('getsoclist');
-    return dispatch => new Promise(resolve => FirebaseRef.child('/')
-      .on('value', (snapshot) => {
-        const data = snapshot.val() || [];
-        console.log(data);
-        return resolve(
-          dispatch({ type: 'get_soc_succ', payload: data }),
-        );
-      })).catch((err) => { throw err.message; });
-  }
+const mapDispatchToProps = (dispatch)=> {
+  return {
+    fetchSocs: ()=>  dispatch(getByQuery('तालुका रत्नागिरी',10458)) 
+  }  
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Recipes);

@@ -1,4 +1,5 @@
 import * as FirebaseModule from 'firebase';
+import 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAK5pNIHuPqOgAAEWGDc6KfgFlNlT0xCi4',
@@ -9,19 +10,10 @@ const firebaseConfig = {
   messagingSenderId: '648968004319',
   appId: '1:648968004319:web:5bd2aff697e3da3cf9bf6a',
 };
-const {
-  apiKey, authDomain, databaseURL, storageBucket, messagingSenderId,
-} = firebaseConfig;
-
-let firebaseInitialized = false;
-
-if (apiKey && authDomain && databaseURL && storageBucket && messagingSenderId) {
-  FirebaseModule.initializeApp({
-    apiKey, authDomain, databaseURL, storageBucket, messagingSenderId,
-  });
-
-  firebaseInitialized = true;
-}
+let firebaseInitialized = true;
+FirebaseModule.initializeApp(firebaseConfig);
 
 export const FirebaseRef = firebaseInitialized ? FirebaseModule.database().ref() : null;
 export const Firebase = firebaseInitialized ? FirebaseModule : null;
+export const db = firebaseInitialized ? FirebaseModule.firestore() : null;
+//var db = firebase.firestore();

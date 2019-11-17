@@ -1,14 +1,16 @@
 /* global window */
-import { createStore, applyMiddleware, compose } from 'redux';
+import { getFirebase, reactReduxFirebase } from 'react-redux-firebase';
+import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import reducers from '../reducer';
-import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
-import fbConfig from '../Constants/fbConfig'
+import reducers from './reducer';
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
 
-export default createStore(reducers,
-    compose(
-      // applyMiddleware(thunk.withExtraArgument({getFirebase})),
-      // reactReduxFirebase(fbConfig)
-      applyMiddleware(thunk)
-    )
-  );
+  const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+  export default createStore(reducers, composeEnhancer(applyMiddleware(thunk)));
+
+  
