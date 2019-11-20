@@ -7,15 +7,11 @@ import { getByQuery } from '../Store/Actions/firestore';
         village: 'मंडणगड',
         panel:'10458'
       };
-  onValueChange2(value: string ) {
+  onValueChange(val: string,key:string ) {
       let creds  = {
-          key:'तालुका रत्नागिरी',
-          val:value
+          key, val
       }
-      let creds2  = {
-        key:'पॅनल नंबर',
-        val:value
-    }
+      this.setState({...this.state,village:val})
     return this.props.filterData(creds)
   }
   render() {
@@ -30,7 +26,7 @@ import { getByQuery } from '../Store/Actions/firestore';
                 placeholderStyle={{ color: "#bfc6ea" }}
                 placeholderIconColor="#007aff"
                 selectedValue={this.state.village}
-                onValueChange={(val)=>this.props.filterData({key:'तालुका रत्नागिरी',val})}
+                onValueChange={(val)=>this.onValueChange(val,'तालुका रत्नागिरी')}
               >
                 <Picker.Item label="मंडणगड" value="मंडणगड" />
                 <Picker.Item label="दापोली" value="दापोली" />
@@ -56,6 +52,7 @@ import { getByQuery } from '../Store/Actions/firestore';
             </Item>
 
           </Form>
+          
     );
   }
 }
