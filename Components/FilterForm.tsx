@@ -4,14 +4,13 @@ import { Container, Header, Content, Form, Item, Picker,Icon } from 'native-base
 import { getByQuery } from '../Store/Actions/firestore';
  class FilterForm extends Component<any> {
      state = {
-        village: 'मंडणगड',
-        panel:'10458'
+      category: 'Grocery',
       };
   onValueChange(val: string,key:string ) {
       let creds  = {
           key, val
       }
-      this.setState({...this.state,village:val})
+      this.setState({...this.state,category:val})
     return this.props.filterData(creds)
   }
   render() {
@@ -22,36 +21,22 @@ import { getByQuery } from '../Store/Actions/firestore';
                 mode="dropdown"
                 iosIcon={<Icon name="arrow-down" />}
                 style={{ width: undefined }}
-                placeholder='village'
+                placeholder='category'
                 placeholderStyle={{ color: "#bfc6ea" }}
                 placeholderIconColor="#007aff"
-                selectedValue={this.state.village}
-                onValueChange={(val)=>this.onValueChange(val,'तालुका रत्नागिरी')}
+                selectedValue={this.state.category}
+                onValueChange={(val)=>this.onValueChange(val,'category')}
               >
-                <Picker.Item label="मंडणगड" value="मंडणगड" />
-                <Picker.Item label="दापोली" value="दापोली" />
-                <Picker.Item label="खेड" value="खेड" />
+                <Picker.Item label="Electronics" value="Electronics" />
+                <Picker.Item label="stationary" value="stationary" />
+                <Picker.Item label="Kitchen_app" value="Kitchen_app" />
+                <Picker.Item label="Clothing" value="Clothing" />
+                <Picker.Item label="Grocery" value="Grocery" />
               </Picker>
-            </Item>
-            <Item picker>
-              <Picker
-                mode="dropdown"
-                iosIcon={<Icon name="arrow-down" />}
-                style={{ width: undefined }}
-                placeholder='Panel'
-                placeholderStyle={{ color: "#bfc6ea" }}
-                placeholderIconColor="#007aff"
-                selectedValue={this.state.panel}
-                onValueChange={(val)=>this.props.filterData({key:'पॅनल नंबर',val:parseInt(val)})}
-              >
-                <Picker.Item label="10458" value="10458" />
-                <Picker.Item label="12426" value="12426" />
-                <Picker.Item label="10458" value="10458" />
-              </Picker>
-
             </Item>
 
           </Form>
+          
           
     );
   }

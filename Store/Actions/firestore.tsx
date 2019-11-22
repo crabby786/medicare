@@ -48,7 +48,7 @@ function getDoc(docName) {
 }
 function getByQuery(key, value) {
     return (dispatch)=> {
-        db.collection("Society")
+        db.collection("stockA")
         .where(key, "==", value)
         .get()
         .then(function(querySnapshot) {

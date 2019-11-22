@@ -6,24 +6,14 @@ import { Container, Content, Text,
 import { getDocs, getDoc, getByQuery } from '../Store/Actions/firestore';
 import FilterForm from './FilterForm';
 
-class Recipes extends Component<any> {
+class StockList extends Component<any> {
   static defaultProps = {
     match: null,
   }
 
-  state = {
-    error: null,
-    loading: false,
-  }
-
-  // componentDidMount = () => {
-  //   const { fetchSocs } = this.props;
-  //   return fetchSocs();
-  // } 
-
 
   render = () => {
-    const { socs,filteredData } = this.props;
+    const { filteredData } = this.props;
     //const id = (match && match.params && match.params.id) ? match.params.id : null;
 
     return (
@@ -40,7 +30,7 @@ class Recipes extends Component<any> {
                 <Thumbnail square source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTmGzCzP9Pd1ZABKaX1cBOHZrZgGlIaFL40zfs_4-jx9tLEcTu&s' }} />
               </Left>
               <Body>
-                <Text>{item['संस्थेचे नांव']}</Text>
+                <Text>{item.name}</Text>
                 <Text note numberOfLines={1}>Its time to build a difference . .</Text>
               </Body>
               <Right>
@@ -68,10 +58,6 @@ const mapStateToProps = state => {
   }
 };
 
-const mapDispatchToProps = (dispatch)=> {
-  return {
-    fetchSocs: ()=>  dispatch(getByQuery('तालुका रत्नागिरी',10458)) 
-  }  
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Recipes);
+
+export default connect(mapStateToProps, null)(StockList);

@@ -12,14 +12,14 @@ import { Ionicons as Icon, FontAwesome as Fa } from '@expo/vector-icons';
         screen: Home,
         navigationOptions: ({ navigation }) => ({
           title: 'Home',
-          tabBarIcon:<Icon name="md-home" size={30} color={colors.yellow} />
+          tabBarIcon:<Icon name="md-home" size={30} color={colors.red} />
         }),
       },
       Setting:{
         screen: Settings,
         navigationOptions: ({ navigation }) => ({
           title: 'Setting',
-          tabBarIcon:<Icon name="md-settings" size={30} color={colors.yellow} />
+          tabBarIcon:<Icon name="md-settings" size={30} color={colors.red} />
         }),
       }
   };
@@ -46,7 +46,7 @@ import { Ionicons as Icon, FontAwesome as Fa } from '@expo/vector-icons';
             onPress= {()=> navigation.openDrawer() }
            />,
            headerStyle:{
-             backgroundColor:colors.yellow
+             backgroundColor:colors.red
            },
            headerTitleStyle: {
              fontWeight:"bold",

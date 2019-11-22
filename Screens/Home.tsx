@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Header, Content, Card, CardItem, Body, Text } from 'native-base';
 import { NavigationStackOptions, NavigationStackProp } from 'react-navigation-stack';
 import { Button, AsyncStorage } from 'react-native';
-import Recipes from '../Components/Recipes';
+import StockList from '../Components/StockList';
 type Props = {
     navigation: NavigationStackProp
   };
@@ -28,7 +28,7 @@ export default class Home extends Component<Props> {
               </Body>
             </CardItem>
           </Card>
-          <Recipes></Recipes>
+          <StockList></StockList>
         </Content>
       </Container>
     );
