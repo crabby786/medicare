@@ -5,17 +5,18 @@ import { Container, Content, Text,
 } from 'native-base';
 import { getDocs, getDoc, getByQuery } from '../Store/Actions/firestore';
 import FilterForm from './FilterForm';
+import { NavigationStackProp } from 'react-navigation-stack';
+type Props = {
+  navigation: NavigationStackProp,filteredData:any
+};
 
-class StockList extends Component<any> {
-  static defaultProps = {
-    match: null,
-  }
-
-
+class StockList extends Component<Props, any> {
+  nav =  () => {
+    this.props.navigation.navigate('Auth');
+  };
   render = () => {
-    const { filteredData } = this.props;
+    const { filteredData,navigation } = this.props;
     //const id = (match && match.params && match.params.id) ? match.params.id : null;
-
     return (
       <Container style={{ flex: 1 }}>
         <Content>
@@ -34,11 +35,10 @@ class StockList extends Component<any> {
                 <Text note numberOfLines={1}>Its time to build a difference . .</Text>
               </Body>
               <Right>
-                <Button transparent>
+                <Button transparent onPress = {()=>navigation.navigate('ProductDetail')} >
                   <Text>View</Text>
                 </Button>
-              </Right>
-            
+              </Right>        
             
             </ListItem>
               )

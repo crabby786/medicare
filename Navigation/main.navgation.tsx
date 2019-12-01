@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, SafeAreaView, Button, StatusBar, Platform } from 'react-native';
+import { AsyncStorage, View, } from 'react-native';
 import { colors } from '../Constants/Theme';
-import { Home,Settings,Login, AuthLoading } from "../Screens";
+import { Home,Settings,Login, AuthLoading, ProductDetail } from "../Screens";
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -18,35 +18,58 @@ import { Ionicons as Icon, FontAwesome as Fa } from '@expo/vector-icons';
       Setting:{
         screen: Settings,
         navigationOptions: ({ navigation }) => ({
-          title: 'Setting',
-          tabBarIcon:<Icon name="md-settings" size={30} color={colors.red} />
+          title: 'Scanner',
+          tabBarIcon:<Icon name="md-camera" size={30} color={colors.pink} />
         }),
       }
   };
+
+  
   const TabNavigatorConfig = {
     navigationOptions:({navigation})=> {
       const {routeName} = navigation.state.routes[navigation.state.index];
       return {
-        headerTitle:routeName,   
-                        
+        headerTitle:routeName,            
+        headerLeft:  <Icon size={30} color="#fff" name="md-menu"
+        style={{paddingLeft:10}}
+          onPress= {()=> navigation.openDrawer() }
+         />,             
       }
     }
   };
   const NavTabs = createBottomTabNavigator(tabs, TabNavigatorConfig);
   
-  const DrawerStacks = createStackNavigator({NavTabs},{
+  const DrawerStacks = createStackNavigator({
+    NavTabs,ProductDetail:{
+      screen: ProductDetail,
+      navigationOptions: ({ navigation }) => ({
+        title: 'Detail',
+      }),
+    }
+  },
+  {
     defaultNavigationOptions:({navigation}) =>  {
-        return {
-          headerLeft: <Icon size={30} color="#fff" name="md-menu"
-          style={{paddingLeft:10}}
+      const RightBox = () =>  {
+        return (
+          <View  style = {{flex:1,flexDirection:'row'}}>
+          <Icon size={30} color="#fff" name="md-notifications"
+          style={{paddingRight:20}}
             onPress= {()=> navigation.openDrawer() }
-           />,
-           headerRight: <Icon size={30} color="#fff" name="md-notifications"
+           />
+           <Icon size={30} color="#fff" name="md-log-out"
           style={{paddingRight:10}}
-            onPress= {()=> navigation.openDrawer() }
-           />,
+            onPress= {async () => {
+              await AsyncStorage.clear();
+              navigation.navigate('Auth');
+            } }
+           />
+          </View>
+        )
+      }
+        return {
+           headerRight: <RightBox></RightBox>,
            headerStyle:{
-             backgroundColor:colors.red
+             backgroundColor:colors.pink
            },
            headerTitleStyle: {
              fontWeight:"bold",
@@ -55,7 +78,11 @@ import { Ionicons as Icon, FontAwesome as Fa } from '@expo/vector-icons';
            headerTintColor:"#fff",
         }
     }
-} )
+  } 
+  )
+  const ProductStack = createStackNavigator({
+    ProductDetail
+  })
   const Drawer = createDrawerNavigator({
       DrawerStacks
   });

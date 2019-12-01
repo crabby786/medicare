@@ -3,6 +3,7 @@ import { Container, Header, Content, Card, CardItem, Body, Text } from 'native-b
 import { NavigationStackOptions, NavigationStackProp } from 'react-navigation-stack';
 import { Button, AsyncStorage } from 'react-native';
 import StockList from '../Components/StockList';
+import Block from '../Components/Block';
 type Props = {
     navigation: NavigationStackProp
   };
@@ -15,22 +16,21 @@ export default class Home extends Component<Props> {
         this.props.navigation.navigate('Auth');
       };
   render() {
+    const { navigation } = this.props;
     return (
-      <Container>
-        <Content>
-          <Card>
-            <CardItem>
-              <Body>
-                <Text>
-                   Home screen
-                </Text>
-                   <Button title="sign me out" onPress={this._signOutAsync} />
-              </Body>
-            </CardItem>
-          </Card>
-          <StockList></StockList>
-        </Content>
-      </Container>
+      
+      <Block space="between" >
+      <Card>
+        <CardItem>
+          <Body>
+            <Text  >
+            Hi Raju! Handpicked deals for you
+            </Text>
+          </Body>
+        </CardItem>
+      </Card>
+      <StockList navigation = { navigation} ></StockList>
+      </Block>
     );
   }
 }
