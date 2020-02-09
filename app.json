@@ -13,7 +13,7 @@
     "orientation": "portrait",
     "icon": "./assets/medicare.png",
     "splash": {
-      "image": "./assets/splash2.jpg",
+      "image": "./assets/splash2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -24,10 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.expedise.medicare"
     },
-    "console.ignoredYellowBox" : [
-      "Setting a timer"
-      ]
+    "android": {
+      "package": "com.expedise.medicare"
+    }
   }
 }
