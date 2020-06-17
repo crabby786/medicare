@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "medicare",
-    "slug": "medicare",
+    "name": "Dishco",
+    "slug": "Dishco",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": [
@@ -11,9 +11,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/medicare.png",
+    "icon": "./assets/medicare2.png",
     "splash": {
-      "image": "./assets/splash2.png",
+      "image": "./assets/medicare2_sm.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -25,10 +25,16 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.expedise.medicare"
+      "bundleIdentifier": "com.dishco.ka"
     },
     "android": {
-      "package": "com.expedise.medicare"
+      "package": "com.dishco.ka"
+    },
+    "androidStatusBarColor": "#ffa803",
+    "androidStatusBar": {
+          "barStyle": "light-content",
+          "backgroundColor": "#ffa803",
+          "translucent":false
     }
   }
 }

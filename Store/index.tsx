@@ -1,5 +1,5 @@
 /* global window */
-import { getFirebase, reactReduxFirebase } from 'react-redux-firebase';
+// import { getFirebase, reactReduxFirebase } from 'react-redux-firebase';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import reducers from './reducer';
