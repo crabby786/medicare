@@ -1,5 +1,7 @@
-import * as FirebaseModule from 'firebase';
+// import * as FirebaseModule from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAK5pNIHuPqOgAAEWGDc6KfgFlNlT0xCi4',
@@ -10,10 +12,10 @@ const firebaseConfig = {
   messagingSenderId: '648968004319',
   appId: '1:648968004319:web:5bd2aff697e3da3cf9bf6a',
 };
-let firebaseInitialized = true;
-FirebaseModule.initializeApp(firebaseConfig);
+// let firebaseInitialized = true;
+// FirebaseModule.initializeApp(firebaseConfig);
 
-export const FirebaseRef = firebaseInitialized ? FirebaseModule.database().ref() : null;
-export const Firebase = firebaseInitialized ? FirebaseModule : null;
-export const db = firebaseInitialized ? FirebaseModule.firestore() : null;
-//var db = firebase.firestore();
+// export const FirebaseRef = firebaseInitialized ? database().ref() : null;
+// // export const Firebase = firebaseInitialized ? FirebaseModule : null;
+// export const db = firebaseInitialized ? firestore() : null;
+// //var db = firebase.firestore();

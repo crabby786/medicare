@@ -4,7 +4,7 @@ import { Container, Text, Content, Body, StyleProvider } from 'native-base';
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 import AppContainer from './Navigation/main.navgation';
-import { View } from 'react-native';
+import { View, StatusBar, Platform } from 'react-native';
 import { Provider } from 'react-redux';
 import store from "./Store";
 import getTheme from './native-base-theme/components';
@@ -37,7 +37,7 @@ export default class App extends React.Component {
     });
     this.setState({ isReady: true });
   }
-
+  
   public render(): React.ReactNode {
     if (!this.state.isReady) {
       return <AppLoading />;
